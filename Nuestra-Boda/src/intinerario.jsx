@@ -11,7 +11,14 @@ export default function Intinerario() {
 
   return (
     <div >
-       <div className="flex flex-col items-center justify-center p-7">
+
+      <div className="flex flex-col items-center justify-center h-96 md:h-80 lg:h-[700px] bg-black text-white" >
+          <h1 className="text-xl sm:text-6xl font-bold p-5 font-cursiveDancing">¡Estas invitado!</h1>
+          <p className="text-lg sm:text-4xl p-7 text-center ">Nos encantaria que seas parte de este momento tan especial para nosotros</p>
+          <p className="text-lg sm:text-4xl p-7 text-center">¡Falta Poco!</p>
+          {/* <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/pareja-de-boda.png" alt="dress code" /> */}
+        </div>
+       <div className="flex flex-col items-center justify-center p-7 bg-black">
         <Countdown targetDate="2026-06-11T00:00:00" />
         </div>
         <div className="flex flex-col items-center justify-center">
@@ -43,63 +50,35 @@ export default function Intinerario() {
         </div>
 
         {/* Sección de Regalos */}
-  <div className="font-playfair flex flex-col items-center justify-center ">
-  <h1 className="text-center text-4xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">Itinerario</h1>
-  <div className="grid grid-cols-3 gap-6">
-    {/* Columna 1 */}
-    <div className="flex flex-col gap-3">
-      <div className="flex-grow">
-        <p className="text-left text-[16px] lg:text-[19px] font-bold ml-2">Fotografías</p>
-        <img src="./camara-fotografica.png" alt="fotografia" className="ml-2 h-20 w-20 mx-1 md:h-28 sm:w-28" />
-      </div>
-      <div className="flex-grow">
-        <p className="text-right text-[16px] lg:text-[19px] font-bold -mr-10">Comida</p>
-        <img src="./cena-romantica.png" alt="comida" className="h-20 w-20 ml-24 md:h-28 sm:w-28" />
-        <p className="text-right text-[11px] lg:text-[17px] -mr-16">5:00 pm - 6:00 pm</p>
-      </div>
-      <div className="flex-grow">
-        <p className="text-left text-[16px] lg:text-[19px] font-bold ml-5">Baile</p>
-        <img src="./bola-de-disco.png" alt="baile" className="ml-2 h-20 w-20  mx-0 md:h-28 sm:w-28" />
-        <p className="text-left text-[11px] lg:text-[17px] ml-2">6:30 pm - 11:30 pm</p>
-      </div>
-    </div>
+  <div className="flex flex-col items-center justify-center gap-3 h-96 md:h-80 lg:h-[700px]">
+  <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/regalo1.png" alt="Regalo" />
+  <h1 className="text-xl sm:text-2xl font-bold p-3 font-playfair">REGALOS</h1>
+  <p className="text-lg sm:text-xl p-7 text-center ">Ya tenemos pensado el ferrari, la mansion y el velero. Ahora lo unico que onos falta es el dinero</p>
 
-    {/* Columna separadora */}
-    <div className="flex flex-col items-center">
-      <div className="h-full border-l-4 border-black"></div>
-    </div>
-
-    {/* Columna 3 */}
-    <div className="flex flex-col gap-3 py-12">
-      <div className="flex-grow">
-        <p className="text-left text-[14px] lg:text-[19px] font-bold -ml-2">Llegada de Novios</p>
-        <img src="./arco-de-la-boda.png" alt="arco" className="h-20 w-20  ml-7 md:h-28 sm:w-28" />
-        <p className="text-left text-[11px] lg:text-[17px] ml-5">4:30 pm - 5:00 pm</p>
-      </div>
-      <div className="flex-grow">
-        <p className="text-left text-[16px] lg:text-[19px] font-bold -ml-14">Pastel</p>
-        <img src="./pastel.png" alt="pastel" className="-ml-16  h-20 w-20  md:h-28 sm:w-28" />
-        <p className="text-left text-[11px] lg:text-[17px] -ml-16">6:00 pm - 6:30 pm</p>
-      </div>
-      <div className="flex-grow">
-        
-      </div>
-    </div>
-  </div>
+  {/* Botón para redirigir al Google Form */}
+  <button 
+    className="bg-[#9E8E7B] rounded-md p-3 w-96 h-14 flex items-center justify-center text-xl text-white "
+    onClick={() => window.location.href = ""}
+  >
+    Ver Datos Bancarios
+  </button>
+  <p>Banco Santander</p>
+  <p>xxxx xxxx xxxx xxxx</p>
 </div>
 
 {/* Sección de Confirmación de Asistencia */}
 <div className="flex flex-col items-center justify-center gap-3 h-96 md:h-80 lg:h-[700px]">
   <h1 className="text-xl sm:text-2xl font-bold p-5 font-playfair">CONFIRMAR ASISTENCIA</h1>
-  <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/anillos-de-boda.png" alt="dress code" />
-  <p className="text-lg sm:text-xl p-7 text-center font-cursiveDancing">Confirma tu asistencia antes del 20 de diciembre</p>
-
+  <p>Por favor, confirma tu asistencia</p>
+  <p>¡Esperamos que este alli!</p>
+  <input type="text" placeholder="Nombre y apellido" className="w-80 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9E8E7B]" />
+<input type="text" placeholder="Felicita a los novios aqui!" className="w-80 max-w-xl p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9E8E7B]" />
   {/* Botón para redirigir al Google Form */}
   <button 
-    className="bg-yellow-600 rounded-md p-3 w-40 h-14 flex items-center justify-center text-xl text-white font-cursiveDancing"
+    className="bg-[#9E8E7B] rounded-md p-3 w-40 h-14 flex items-center justify-center text-xl text-white "
     onClick={() => window.location.href = ""}
   >
-    Confirmar Asistencia
+    Enviar Respuesta
   </button>
 </div>
 

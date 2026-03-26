@@ -8,7 +8,7 @@ const Countdown = ({ targetDate }) => {
     if (difference > 0) {
       timeLeft = {
         dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        hora: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutos: Math.floor((difference / 1000 / 60) % 60),
         segundos: Math.floor((difference / 1000) % 60),
       };
@@ -28,16 +28,16 @@ const Countdown = ({ targetDate }) => {
 
   return (
     <section>
-      <div className="p-2 sm:text-lg md:text-4xl lg:text-5xl text-black flex flex-col items-center rounded-lg font-cursiveDancing">
+      <div className="p-2 sm:text-lg md:text-4xl lg:text-5xl text-black flex flex-col items-center rounded-lg font-playfair">
         <div className="flex space-x-10">
           {Object.keys(timeLeft).map((interval) => (
             <div key={interval} className="flex flex-col items-center gap-2">
               {/* Estilo para los números */}
-              <span className="bg-yellow-600 text-white font-bold p-2 w-12 h-12 rounded-full text-2xl flex items-center justify-center">
+              <span className="bg-[#9E8E7B] text-white font-bold p-2 w-12 h-12 rounded-full text-2xl flex items-center justify-center">
                 {timeLeft[interval]}
               </span>
               {/* Estilo para las etiquetas (días, horas, minutos, segundos) */}
-              <span className="bg-white text-black capitalize">{interval}</span>
+              <span className="text-white capitalize">{interval}</span>
             </div>
           ))}
         </div>
