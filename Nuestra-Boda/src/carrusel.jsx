@@ -33,45 +33,59 @@ const Carousel = () => {
   };
 
   return (
-    <section> 
-    <div className="relative w-[380px] h-[400px] overflow-hidden flex flex-col items-center">
-      <div
-        ref={carouselRef}
-        className="absolute flex transition-transform duration-[1000ms] ease-in-out"
-        style={{ transform: `translateX(-${index * 100}%)`, width: `${images.length * 100}%` }}
-      >
-        {images.map((src, i) => (
-          <div key={i} className="flex-shrink-0 w-full h-full flex items-center justify-center">
-            <img className="h-[400px] w-[400px] object-cover" src={src} alt={`Imagen ${i + 1}`} />
-          </div>
-        ))}
-      </div>
-      <button 
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:bg-gray-200"
-        onClick={prevImage}
-      >
-        &lt; {/* Botón de izquierda */}
-      </button>
-      <button 
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg hover:bg-gray-200"
-        onClick={nextImage}
-      >
-        &gt; {/* Botón de derecha */}
-      </button>
-      {/* Indicadores de puntos fuera de la imagen, en la parte inferior */}
+     <section className="w-full flex flex-col items-center">
+  <div className="relative w-full max-w-md h-[400px] overflow-hidden flex items-center justify-center">
+    
+    <div
+      ref={carouselRef}
+      className="absolute flex transition-transform duration-700 ease-in-out h-full"
+      style={{
+        transform: `translateX(-${index * 100}%)`,
+        width: `${images.length * 100}%`
+      }}
+    >
+      {images.map((src, i) => (
+        <div
+          key={i}
+          className="w-full h-full flex-shrink-0 flex items-center justify-center"
+        >
+          <img
+            className="w-full h-full object-contain rounded-2xl bg-white"
+            src={src}
+            alt={`Imagen ${i + 1}`}
+          />
+        </div>
+      ))}
     </div>
-      <div className="flex justify-center mt-4">
-        {images.map((_, i) => (
-          <span
-            key={i}
-            className={`h-2 w-2 mx-1 rounded-full ${
-              index === i ? 'bg-black' : 'bg-gray-400'
-            }`}
-          ></span>
-        ))}
-      </div>
 
-      </section>
+    {/* Botones */}
+    <button
+      className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-md hover:bg-white"
+      onClick={prevImage}
+    >
+      ‹
+    </button>
+
+    <button
+      className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 backdrop-blur-md p-2 rounded-full shadow-md hover:bg-white"
+      onClick={nextImage}
+    >
+      ›
+    </button>
+  </div>
+
+  {/* Indicadores */}
+  <div className="flex justify-center mt-4">
+    {images.map((_, i) => (
+      <span
+        key={i}
+        className={`h-2 w-2 mx-1 rounded-full transition ${
+          index === i ? "bg-[#9E8E7B] scale-125" : "bg-gray-400"
+        }`}
+      />
+    ))}
+  </div>
+</section>
   );
 };
 

@@ -75,48 +75,160 @@ ${mensajeInvitado || "Sin mensaje"}
   return (
     <div >
 
-      <div className="flex flex-col items-center justify-center h-96 md:h-80 lg:h-[700px] bg-black text-white" >
-          <h1 className="text-xl sm:text-6xl font-bold p-5 font-cursiveDancing">¡Estas invitado!</h1>
-          <p className="text-lg sm:text-4xl p-7 text-center ">Nos encantaria que seas parte de este momento tan especial para nosotros</p>
-          <p className="text-lg sm:text-4xl p-7 text-center">¡Falta Poco!</p>
-          {/* <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/pareja-de-boda.png" alt="dress code" /> */}
-        </div>
-       <div className="flex flex-col items-center justify-center p-7 bg-black">
-        <Countdown targetDate="2026-06-11T00:00:00" />
-        </div>
-        <div className="flex flex-col items-center justify-center">
-        <img src="/bajotime.avif" alt="acepto" />
-        </div>
+      <div className="relative flex flex-col items-center justify-center text-white bg-black py-20 px-6 text-center overflow-hidden">
+
+  {/* Glow decorativo sutil */}
+  <div className="absolute w-[500px] h-[500px] bg-[#9E8E7B]/20 rounded-full blur-3xl top-[-100px]"></div>
+
+  {/* Contenido */}
+  <div className="relative z-10 max-w-3xl">
+
+    <h1 className="text-3xl sm:text-5xl md:text-6xl font-cursiveDancing mb-6 leading-tight">
+      ¡Estás invitado!
+    </h1>
+
+    <p className="text-lg sm:text-2xl md:text-3xl opacity-90 mb-6">
+      Nos encantaría que seas parte de este momento tan especial para nosotros
+    </p>
+
+    {/* Línea elegante */}
+    <div className="w-20 h-[2px] bg-[#9E8E7B] mx-auto my-6"></div>
+
+    <p className="text-xl sm:text-3xl italic opacity-80">
+      ¡Falta poco!
+    </p>
+
+  </div>
+</div>
+
+{/* COUNTDOWN separado pero integrado */}
+<div className="bg-black pb-20 flex justify-center">
+  <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-8 py-6 shadow-xl">
+    <Countdown targetDate="2026-06-11T00:00:00" />
+  </div>
+</div>
+        <div className="relative w-full h-[450px] md:h-[550px] lg:h-[700px] overflow-hidden">
+
+  <img
+    src="/bajotime.avif"
+    alt="Decoración"
+    className="w-full h-full object-cover object-center"
+  />
+
+  {/* Fade blanco abajo */}
+  <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
+
+</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2  ">
-        <div className="flex flex-col items-center justify-center gap-3 h-96 md:h-96 lg:h-[700px]" >
-          <h1 className="text-2xl sm:text-3xl font-bold p-5 font-playfair">CELEBRACIÓN</h1>
-          <p className="text-xl sm:text-xl font-cursiveDancing">11 | Junio | 2026</p>
-          <p className="text-xl sm:text-xl font-cursiveDancing"> 4:30 PM</p>
-          {/* <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/tarta-de-boda.png" alt="imagen del salon" /> */}
-          <p className="p-3 text-center font-cursiveDancing">Salón Event Center</p>
-          <p className="p-3 text-center font-cursiveDancing">C.5 Pte. 400, Libertad, Heroica Puebla de Zaragoza, Pue</p>
-          <a className="bg-yellow-600 rounded-md p-3 w-36 h-11 flex items-center justify-center text-xl text-white font-cursiveDancing" href="https://maps.app.goo.gl/TsSDUBKAractwi8F8">Ver Dirección</a>
-        </div>
+        <div className="flex items-center justify-center p-6">
+  <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full text-center space-y-4 hover:scale-105 transition duration-300">
+    
+    <h1 className="text-2xl sm:text-3xl font-bold font-playfair tracking-wide">
+      CELEBRACIÓN
+    </h1>
+
+    <div className="text-lg font-cursiveDancing space-y-1">
+      <p>📅 11 Junio 2026</p>
+      <p>⏰ 4:30 PM</p>
+    </div>
+
+    <div className="border-t border-gray-200 pt-4 space-y-2">
+      <p className="font-semibold text-lg">Ubicacion</p>
+      <p className="font-semibold text-lg">📍 Salón Event Center</p>
+      <p className="text-sm text-gray-600">
+        C.5 Pte. 400, Libertad, Heroica Puebla de Zaragoza, Pue
+      </p>
+    </div>
+
+    <a
+      href="https://maps.app.goo.gl/TsSDUBKAractwi8F8"
+      target="_blank"
+      className="inline-block mt-4 bg-[#9E8E7B] hover:bg-[#8a7a69] text-white px-6 py-3 rounded-full shadow-md transition duration-300"
+    >
+      Ver ubicación
+    </a>
+  </div>
+</div>
 
         {/* Sección de Vestimenta */}
-        <div className="flex flex-col items-center justify-center h-96 md:h-80 lg:h-[700px] bg-black text-white" >
-          <h1 className="text-xl sm:text-5xl font-bold p-5 font-playfair ">VESTIMENTA</h1>
-          <p className="text-lg sm:text-4xl p-7 text-center ">Formal</p>
-          {/* <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/pareja-de-boda.png" alt="dress code" /> */}
-        </div>
+        <div className="flex items-center justify-center p-6 bg-black">
+  <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-xl p-8 max-w-md w-full text-center space-y-4 text-white">
+    
+    <h1 className="text-2xl sm:text-4xl font-bold font-playfair tracking-wide">
+      Detalles
+    </h1>
+
+    <p className="text-lg sm:text-2xl font-cursiveDancing">
+      Código de vestimenta
+    </p>
+
+    {/* Línea decorativa */}
+    <div className="w-16 h-[2px] bg-[#9E8E7B] mx-auto"></div>
+
+    {/* Tipo */}
+    <p className="text-2xl sm:text-3xl font-semibold mt-2">
+      Formal
+    </p>
+
+    {/* Descripción */}
+    <p className="text-sm sm:text-base text-gray-300 mt-2">
+      Elegante y acorde a la ocasión. Evita colores demasiado claros.
+    </p>
+
+    {/* Íconos */}
+    <div className="flex justify-center gap-6 mt-4 text-3xl">
+      <span>🤵</span>
+      <span>👗</span>
+    </div>
+
+    {/* Línea decorativa */}
+    <div className="w-16 h-[2px] bg-[#9E8E7B] mx-auto"></div>
+    
+    <p className="text-lg sm:text-2xl font-cursiveDancing">
+      Evento
+    </p>
+
+    <p className="text-sm sm:text-base text-gray-300 mt-2">
+      Solo para adultos
+    </p>
+
+
+  </div>
+</div>
 
         {/* Sección de Momentos */}
-        <div className="flex flex-col items-center justify-center" >
-          <h1 className="text-xl sm:text-2xl font-bold p-5 font-playfair">NUESTROS MOMENTOS</h1>
-          <Carousel />
-        </div>
+        <div className="flex items-center justify-center py-12 bg-gray-50">
+  <div className="max-w-4xl w-full text-center space-y-6">
+
+    {/* Título */}
+    <h1 className="text-2xl sm:text-4xl font-bold font-playfair tracking-wide">
+      Nuestros Momentos
+    </h1>
+
+    {/* Línea decorativa */}
+    <div className="w-20 h-[2px] bg-[#9E8E7B] mx-auto"></div>
+
+    {/* Subtexto */}
+    <p className="text-gray-500 text-sm sm:text-base">
+      Un vistazo a nuestra historia juntos 💛
+    </p>
+
+    {/* Carrusel dentro de card */}
+    <div className="bg-white rounded-3xl shadow-xl p-4 sm:p-6 flex justify-center">
+  <div className="w-full max-w-xl">
+    <Carousel />
+  </div>
+</div>
+
+  </div>
+</div>
 
         {/* Sección de Regalos */}
   <div className="flex flex-col items-center justify-center gap-3 h-96 md:h-80 lg:h-[700px]">
   <img className="h-24 w-24 sm:h-28 sm:w-28 p-3" src="/regalo1.png" alt="Regalo" />
   <h1 className="text-xl sm:text-2xl font-bold p-3 font-playfair">REGALOS</h1>
-  <p className="text-lg sm:text-xl p-7 text-center ">Ya tenemos pensado el ferrari, la mansion y el velero. Ahora lo unico que onos falta es el dinero</p>
+  <p className="text-lg sm:text-xl p-7 text-center ">Ya tenemos pensado el ferrari, la mansion y el velero. Ahora lo unico que nos falta es el dinero</p>
 
   {/* Botón para ver datos bancarios*/}
   <button 
@@ -204,9 +316,34 @@ ${mensajeInvitado || "Sin mensaje"}
 
 {/* Sección de Confirmación de Asistencia */}
 
-<div className="flex flex-col items-center justify-center">
-        <img src="/finalboda.webp" alt="acepto" />
-        </div>
+<div className="relative w-full flex justify-center items-center py-16 bg-black overflow-hidden">
+
+  {/* Fondo con blur */}
+  <img
+    src="/finalboda.webp"
+    alt="Fondo boda"
+    className="absolute w-full h-full object-cover opacity-30 blur-sm scale-110"
+  />
+
+  {/* Contenido principal */}
+  <div className="relative flex flex-col items-center">
+
+    <img
+      src="/finalboda.webp"
+      alt="Boda"
+      className="w-72 sm:w-96 rounded-2xl shadow-2xl border border-white/20"
+    />
+
+    {/* Línea decorativa */}
+    <div className="w-24 h-[2px] bg-[#9E8E7B] mt-6"></div>
+
+    {/* Texto opcional elegante */}
+    <p className="text-white mt-4 text-lg font-cursiveDancing opacity-90">
+      ¡Te esperamos!
+    </p>
+
+  </div>
+</div>
 <div className="flex flex-col items-center justify-center gap-4 h-auto py-10 bg-gray-50 rounded-2xl shadow-md">
   <h1 className="text-xl sm:text-2xl font-bold font-playfair">
     CONFIRMAR ASISTENCIA
