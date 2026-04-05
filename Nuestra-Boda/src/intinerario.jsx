@@ -110,7 +110,7 @@ ${mensajeInvitado || "Sin mensaje"}
         <div className="relative w-full h-[450px] md:h-[550px] lg:h-[700px] overflow-hidden">
 
   <img
-    src="/bajotime.avif"
+    src="/Novios-02.jpeg"
     alt="Decoración"
     className="w-full h-full object-cover object-center"
   />

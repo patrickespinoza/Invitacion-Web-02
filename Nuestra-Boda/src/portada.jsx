@@ -28,7 +28,7 @@ export default function Portada() {
       </audio>
       <section className="relative w-full h-[calc(110vh-160px)] md:h-screen flex flex-col items-center justify-center text-black">
         <img
-          src="/vistaprevia02.avif"
+          src="/Portada-02.png"
           alt="Fondo"
           className="absolute w-full h-full object-cover"
         />
@@ -39,13 +39,7 @@ export default function Portada() {
           </h1>
           <p className="font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl">NOS CASAMOS</p>
 
-          <button
-            onClick={handlePlayMusic}
-            className="absolute right-4 bottom-4 transform -translate-y-1/2 bg-yellow-600 p-2 rounded-full flex items-center justify-center"
-            aria-label="Reproducir Música"
-          >
-            <FaVolumeUp className="text-white" size={24} />
-          </button>
+
         </div>
 
         
