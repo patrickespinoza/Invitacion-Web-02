@@ -104,7 +104,7 @@ ${mensajeInvitado || "Sin mensaje"}
 {/* COUNTDOWN separado pero integrado */}
 <div className="bg-black pb-20 flex justify-center">
   <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-8 py-6 shadow-xl">
-    <Countdown targetDate="2026-06-11T00:00:00" />
+    <Countdown targetDate="2027-06-11T00:00:00" />
   </div>
 </div>
         <div className="relative w-full h-[450px] md:h-[550px] lg:h-[700px] overflow-hidden">

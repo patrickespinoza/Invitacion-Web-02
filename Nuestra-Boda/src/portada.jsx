@@ -22,7 +22,7 @@ export default function Portada() {
 
   return (
     <div>
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop >
         <source src="/TylerShaw.mp3" type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio para reproducir.
       </audio>
