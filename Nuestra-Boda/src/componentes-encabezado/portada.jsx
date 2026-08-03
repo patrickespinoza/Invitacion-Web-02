@@ -6,9 +6,9 @@ export default function Portada() {
 
       {/* FOTO */}
       <img
-        src="/Portada-02.png"
+        src="/portada.png"
         alt="Allison y David"
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover object-[center_35%]"
       />
 
       {/* Degradado para mejorar lectura */}

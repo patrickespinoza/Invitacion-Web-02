@@ -5,10 +5,14 @@ import Celebracion from "./componentes-encabezado/Ubicacion";
 import Dresscode from "./componentes-encabezado/Dresscode";
 import Regalos from "./componentes-encabezado/Regalos";
 import Confirmacion from "./componentes-encabezado/Confirmacion";
+import Musica from "./componentes-encabezado/musica";
 
 export default function Intinerario() {
   return (
     <div>
+
+      <Musica/>
+
       <Portada />
 
       <Contador />
