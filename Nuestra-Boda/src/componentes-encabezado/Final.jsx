@@ -24,7 +24,6 @@ const FinalBoda = () => {
         relative
         w-full
         min-h-screen
-        min-h-[100svh]
         overflow-hidden
         bg-[#4A141D]
       "
