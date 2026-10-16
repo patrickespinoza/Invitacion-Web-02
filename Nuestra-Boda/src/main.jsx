@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import Intinerario from './intinerario'
+import PaginaPrincipal from './PaginaPrincipal'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <main>
     <div >
-      <Intinerario/>
+      <PaginaPrincipal/>
     </div>
   </main>
 )

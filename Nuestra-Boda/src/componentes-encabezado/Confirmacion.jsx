@@ -1,5 +1,17 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+
+// ==========================================
+// CONFIGURACIÓN EDITABLE - WEDLY PLUS
+// ==========================================
+
+const URL_CONFIRMACION =
+  "https://script.google.com/macros/s/AKfycbxklU9PTlqxkcu9pBUfWYhByQZ_7kJWuFENeeQhlEW-C6eh2cVbTK3z2AbMJiWVL1ME/exec";
+
+// ==========================================
+// COMPONENTE PRINCIPAL
+// ==========================================
 
 const Confirmacion = () => {
   const [nombreInvitado, setNombreInvitado] = useState("");
@@ -10,9 +22,23 @@ const Confirmacion = () => {
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
 
-  const enviarConfirmacion = async () => {
+  // ==========================================
+  // ENVIAR CONFIRMACIÓN
+  // ==========================================
+
+  const enviarConfirmacion = async (e) => {
+    e.preventDefault();
+
     if (!nombreInvitado.trim() || !asistencia) {
       setError("Completa tu nombre y confirma tu asistencia.");
+      return;
+    }
+
+    if (
+      asistencia === "Sí asistiré" &&
+      (!invitados || Number(invitados) < 1)
+    ) {
+      setError("Indica el número de invitados.");
       return;
     }
 
@@ -21,20 +47,22 @@ const Confirmacion = () => {
     setEnviado(false);
 
     const data = {
-      nombre: nombreInvitado,
+      nombre: nombreInvitado.trim(),
       asistencia,
-      invitados,
-      mensaje: mensajeInvitado,
+      invitados:
+        asistencia === "Sí asistiré" ? invitados : "0",
+      mensaje: mensajeInvitado.trim(),
     };
 
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxklU9PTlqxkcu9pBUfWYhByQZ_7kJWuFENeeQhlEW-C6eh2cVbTK3z2AbMJiWVL1ME/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-        }
-      );
+      const respuesta = await fetch(URL_CONFIRMACION, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("No se pudo completar la solicitud.");
+      }
 
       setEnviado(true);
 
@@ -42,208 +70,379 @@ const Confirmacion = () => {
       setMensajeInvitado("");
       setAsistencia("");
       setInvitados("");
-
-      setTimeout(() => {
-        setEnviado(false);
-      }, 4000);
     } catch (error) {
-      console.error("Error:", error);
-      setError("Hubo un error al enviar. Intenta nuevamente.");
+      console.error("Error al enviar confirmación:", error);
+      setError(
+        "Hubo un error al enviar. Intenta nuevamente."
+      );
     } finally {
       setEnviando(false);
     }
   };
 
+  // ==========================================
+  // ESTILOS REUTILIZABLES
+  // ==========================================
+
+  const estiloCampo = `
+    w-full
+    bg-[#F8F2ED]
+    border border-[#B88A8A]/45
+    rounded-2xl
+    px-5 py-4
+    text-[#4A141D]
+    placeholder:text-[#4A141D]/45
+    outline-none
+    transition-all duration-300
+    focus:border-[#4A141D]
+    focus:ring-2
+    focus:ring-[#B88A8A]/30
+  `;
+
   return (
-    <section className="w-full bg-[#4A141D] py-24 px-5 overflow-hidden">
+    <section
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#F4E8DD]
+        px-5
+        py-20 sm:py-28
+      "
+    >
+      {/* DECORACIONES DEL FONDO */}
+      <div
+        className="
+          pointer-events-none
+          absolute -left-36 top-16
+          h-80 w-80
+          rounded-full
+          border border-[#B88A8A]/20
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute -right-36 bottom-16
+          h-80 w-80
+          rounded-full
+          border border-[#B88A8A]/20
+        "
+      />
+
+      {/* TARJETA PRINCIPAL */}
       <motion.div
         initial={{ opacity: 0, y: 55 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
+        transition={{
+          duration: 0.9,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         viewport={{ once: true }}
         className="
-          max-w-5xl
+          relative z-10
           mx-auto
-          bg-[#F4E8DD]
+          w-full max-w-3xl
+          overflow-hidden
           rounded-tl-[4rem]
           rounded-br-[4rem]
           rounded-tr-2xl
           rounded-bl-2xl
-          overflow-hidden
-          shadow-[0_30px_80px_rgba(0,0,0,.35)]
-          border
-          border-[#B88A8A]/40
+          border border-[#B88A8A]/40
+          bg-[#F8F2ED]
+          px-6 py-12
+          sm:px-12 sm:py-16
+          shadow-[0_25px_70px_rgba(74,20,29,0.12)]
         "
       >
-        <div className="grid lg:grid-cols-2">
-          <div className="relative min-h-[380px] lg:min-h-full overflow-hidden">
-            <img
-              src="/finalboda.webp"
-              alt="Confirmación de asistencia"
-              className="absolute inset-0 w-full h-full object-cover"
+        {/* LÍNEA DECORATIVA SUPERIOR */}
+        <div
+          className="
+            absolute top-0 left-1/2
+            h-[3px] w-28
+            -translate-x-1/2
+            bg-[#B88A8A]
+          "
+        />
+
+        {/* ENCABEZADO */}
+        <div className="text-center">
+
+          <p
+            className="
+              text-xs sm:text-sm
+              font-semibold
+              uppercase
+              tracking-[0.35em]
+              text-[#9B626B]
+            "
+          >
+            RSVP
+          </p>
+
+          <h2
+            className="
+              mt-5
+              font-playfair
+              text-4xl sm:text-5xl
+              leading-tight
+              text-[#4A141D]
+            "
+          >
+            Confirmar asistencia
+          </h2>
+
+          <div className="mx-auto my-8 h-px w-24 bg-[#B88A8A]" />
+
+          <p
+            className="
+              mx-auto max-w-xl
+              font-playfair
+              text-base sm:text-lg
+              leading-relaxed
+              text-[#4A141D]/75
+            "
+          >
+            Nos llenará de alegría compartir este día
+            tan especial contigo. Por favor, confirma
+            tu asistencia.
+          </p>
+
+        </div>
+
+        {/* FORMULARIO */}
+        <form
+          onSubmit={enviarConfirmacion}
+          className="mx-auto mt-12 max-w-xl space-y-6"
+        >
+          {/* NOMBRE */}
+          <div>
+            <label
+              htmlFor="nombreInvitado"
+              className="
+                mb-3 block
+                text-sm font-medium
+                text-[#4A141D]
+              "
+            >
+              Nombre y apellido
+            </label>
+
+            <input
+              id="nombreInvitado"
+              type="text"
+              placeholder="Escribe tu nombre completo"
+              autoComplete="name"
+              value={nombreInvitado}
+              onChange={(e) =>
+                setNombreInvitado(e.target.value)
+              }
+              className={estiloCampo}
             />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#4A141D]/60 via-transparent to-transparent"></div>
-
-            <div className="absolute bottom-8 left-8 right-8 text-white">
-              <p className="font-cursiveDancing text-5xl">
-                ¡Te esperamos!
-              </p>
-              <div className="w-20 h-px bg-[#F4E8DD] mt-5"></div>
-            </div>
           </div>
 
-          <div className="px-7 py-12 sm:px-12 sm:py-16">
-            <p className="uppercase tracking-[0.35em] text-[#B88A8A] text-xs sm:text-sm font-semibold">
-              RSVP
+          {/* ASISTENCIA */}
+          <div>
+            <p
+              className="
+                mb-4
+                text-sm font-medium
+                text-[#4A141D]
+              "
+            >
+              ¿Nos acompañarás?
             </p>
 
-            <h2 className="font-playfair text-[#4A141D] text-4xl sm:text-5xl mt-4 leading-tight">
-              Confirmar Asistencia
-            </h2>
-
-            <p className="mt-5 text-[#4A141D]/70 leading-7">
-              Por favor confirma tu asistencia. Nos encantará compartir este día tan especial contigo.
-            </p>
-
-            <div className="w-24 h-px bg-[#B88A8A] my-8"></div>
-
-            <div className="space-y-5">
-              <input
-                type="text"
-                placeholder="Nombre y apellido"
-                value={nombreInvitado}
-                onChange={(e) => setNombreInvitado(e.target.value)}
-                className="
-                  w-full
-                  bg-white/80
-                  border
-                  border-[#B88A8A]/40
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-[#4A141D]
-                  placeholder:text-[#4A141D]/45
-                  outline-none
-                  focus:ring-2
-                  focus:ring-[#4A141D]/40
-                "
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button
-                  type="button"
-                  onClick={() => setAsistencia("Sí asistiré")}
-                  className={`
-                    py-4 rounded-2xl border transition duration-300 font-playfair
-                    ${
-                      asistencia === "Sí asistiré"
-                        ? "bg-[#4A141D] text-[#F4E8DD] border-[#4A141D]"
-                        : "bg-white/70 text-[#4A141D] border-[#B88A8A]/40 hover:bg-white"
-                    }
-                  `}
-                >
-                  Sí asistiré
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setAsistencia("No podré asistir")}
-                  className={`
-                    py-4 rounded-2xl border transition duration-300 font-playfair
-                    ${
-                      asistencia === "No podré asistir"
-                        ? "bg-[#4A141D] text-[#F4E8DD] border-[#4A141D]"
-                        : "bg-white/70 text-[#4A141D] border-[#B88A8A]/40 hover:bg-white"
-                    }
-                  `}
-                >
-                  No asistiré
-                </button>
-              </div>
-
-              <input
-                type="number"
-                min="1"
-                placeholder="Número de invitados"
-                value={invitados}
-                onChange={(e) => setInvitados(e.target.value)}
-                className="
-                  w-full
-                  bg-white/80
-                  border
-                  border-[#B88A8A]/40
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-[#4A141D]
-                  placeholder:text-[#4A141D]/45
-                  outline-none
-                  focus:ring-2
-                  focus:ring-[#4A141D]/40
-                "
-              />
-
-              <textarea
-                placeholder="Mensaje para los novios"
-                value={mensajeInvitado}
-                onChange={(e) => setMensajeInvitado(e.target.value)}
-                rows="4"
-                className="
-                  w-full
-                  bg-white/80
-                  border
-                  border-[#B88A8A]/40
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-[#4A141D]
-                  placeholder:text-[#4A141D]/45
-                  outline-none
-                  resize-none
-                  focus:ring-2
-                  focus:ring-[#4A141D]/40
-                "
-              />
-
-              {error && (
-                <p className="text-[#4A141D] bg-[#B88A8A]/20 border border-[#B88A8A]/40 rounded-xl px-4 py-3 text-sm">
-                  {error}
-                </p>
-              )}
-
-              {enviado && (
-                <p className="text-[#4A141D] bg-white/70 border border-[#B88A8A]/40 rounded-xl px-4 py-3 text-sm">
-                  Confirmación enviada correctamente.
-                </p>
-              )}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
               <button
                 type="button"
-                onClick={enviarConfirmacion}
-                disabled={enviando}
-                className="
-                  w-full
-                  bg-[#4A141D]
-                  text-[#F4E8DD]
-                  py-4
-                  rounded-full
+                aria-pressed={asistencia === "Sí asistiré"}
+                onClick={() =>
+                  setAsistencia("Sí asistiré")
+                }
+                className={`
+                  rounded-2xl
+                  border
+                  px-5 py-4
                   font-playfair
                   text-lg
-                  shadow-[0_18px_40px_rgba(74,20,29,.35)]
-                  hover:bg-[#6B1F2A]
-                  hover:scale-[1.02]
-                  transition
-                  duration-300
-                  disabled:opacity-60
-                  disabled:cursor-not-allowed
-                "
+                  transition-all duration-300
+                  ${
+                    asistencia === "Sí asistiré"
+                      ? "border-[#4A141D] bg-[#4A141D] text-[#F8F2ED] shadow-lg"
+                      : "border-[#B88A8A]/45 bg-[#F4E8DD] text-[#4A141D] hover:border-[#B88A8A]"
+                  }
+                `}
               >
-                {enviando ? "Enviando..." : "Enviar Confirmación"}
+                Sí asistiré
               </button>
+
+              <button
+                type="button"
+                aria-pressed={
+                  asistencia === "No podré asistir"
+                }
+                onClick={() => {
+                  setAsistencia("No podré asistir");
+                  setInvitados("");
+                }}
+                className={`
+                  rounded-2xl
+                  border
+                  px-5 py-4
+                  font-playfair
+                  text-lg
+                  transition-all duration-300
+                  ${
+                    asistencia === "No podré asistir"
+                      ? "border-[#4A141D] bg-[#4A141D] text-[#F8F2ED] shadow-lg"
+                      : "border-[#B88A8A]/45 bg-[#F4E8DD] text-[#4A141D] hover:border-[#B88A8A]"
+                  }
+                `}
+              >
+                No asistiré
+              </button>
+
             </div>
           </div>
-        </div>
+
+          {/* NÚMERO DE INVITADOS */}
+          {asistencia === "Sí asistiré" && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <label
+                htmlFor="numeroInvitados"
+                className="
+                  mb-3 block
+                  text-sm font-medium
+                  text-[#4A141D]
+                "
+              >
+                Número de invitados
+              </label>
+
+              <input
+                id="numeroInvitados"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="¿Cuántas personas asistirán?"
+                value={invitados}
+                onChange={(e) =>
+                  setInvitados(e.target.value)
+                }
+                className={estiloCampo}
+              />
+            </motion.div>
+          )}
+
+          {/* MENSAJE */}
+          <div>
+            <label
+              htmlFor="mensajeInvitado"
+              className="
+                mb-3 block
+                text-sm font-medium
+                text-[#4A141D]
+              "
+            >
+              Mensaje para los novios
+              <span className="ml-2 text-[#4A141D]/50">
+                (Opcional)
+              </span>
+            </label>
+
+            <textarea
+              id="mensajeInvitado"
+              placeholder="Déjanos unas palabras bonitas..."
+              value={mensajeInvitado}
+              onChange={(e) =>
+                setMensajeInvitado(e.target.value)
+              }
+              rows={4}
+              className={`${estiloCampo} resize-none`}
+            />
+          </div>
+
+          {/* MENSAJE DE ERROR */}
+          {error && (
+            <p
+              role="alert"
+              className="
+                rounded-xl
+                border border-[#B88A8A]/50
+                bg-[#B88A8A]/20
+                px-4 py-3
+                text-sm
+                text-[#4A141D]
+              "
+            >
+              {error}
+            </p>
+          )}
+
+          {/* MENSAJE DE ÉXITO */}
+          {enviado && (
+            <p
+              role="status"
+              className="
+                rounded-xl
+                border border-[#B88A8A]/50
+                bg-[#F4E8DD]
+                px-4 py-3
+                text-center text-sm
+                text-[#4A141D]
+              "
+            >
+              ¡Tu confirmación fue enviada correctamente!
+            </p>
+          )}
+
+          {/* BOTÓN DE ENVÍO */}
+          <motion.button
+            type="submit"
+            disabled={enviando}
+            whileHover={
+              enviando ? {} : { scale: 1.02 }
+            }
+            whileTap={
+              enviando ? {} : { scale: 0.98 }
+            }
+            className="
+              w-full
+              rounded-full
+              bg-[#4A141D]
+              px-8 py-4
+              font-playfair
+              text-lg
+              text-[#F8F2ED]
+              shadow-[0_15px_35px_rgba(74,20,29,0.25)]
+              transition-colors duration-300
+              hover:bg-[#6B1F2A]
+              disabled:cursor-not-allowed
+              disabled:opacity-60
+            "
+          >
+            {enviando
+              ? "Enviando..."
+              : "Enviar confirmación"}
+          </motion.button>
+        </form>
+
+        {/* LÍNEA DECORATIVA INFERIOR */}
+        <div
+          className="
+            absolute bottom-0 left-1/2
+            h-[3px] w-28
+            -translate-x-1/2
+            bg-[#B88A8A]
+          "
+        />
       </motion.div>
     </section>
   );

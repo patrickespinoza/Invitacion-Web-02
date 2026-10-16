@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,7 +16,7 @@ const Regalos = () => {
   };
 
   return (
-    <section className="w-full bg-[#F4E8DD] py-24 px-5 overflow-hidden">
+    <section className="w-full bg-[#4A141D] py-24 px-5 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -23,14 +24,13 @@ const Regalos = () => {
         viewport={{ once: true }}
         className="
           max-w-5xl mx-auto
-          bg-white/70
-          backdrop-blur-xl
+          bg-[#F4E8DD]
           rounded-tl-[4rem]
           rounded-br-[4rem]
           rounded-tr-2xl
           rounded-bl-2xl
-          border border-[#B88A8A]/30
-          shadow-[0_25px_70px_rgba(74,20,29,.18)]
+          border border-[#B88A8A]/35
+          shadow-[0_25px_70px_rgba(0,0,0,0.25)]
           overflow-hidden
         "
       >
@@ -74,7 +74,9 @@ const Regalos = () => {
               text-lg
               shadow-xl
               hover:scale-105
+              hover:bg-[#6B1F2A]
               transition
+              duration-300
             "
           >
             Ver datos bancarios
@@ -87,8 +89,8 @@ const Regalos = () => {
           <motion.div
             className="
               fixed inset-0
-              bg-black/60
-              backdrop-blur-md
+              bg-black/75
+              backdrop-blur-xl
               flex items-center justify-center
               z-[9999]
               px-5
@@ -112,28 +114,42 @@ const Regalos = () => {
                 bg-[#4A141D]
                 text-[#F4E8DD]
                 p-8
+                border border-[#B88A8A]/40
                 shadow-[0_30px_80px_rgba(0,0,0,.4)]
               "
             >
               <button
                 type="button"
                 onClick={() => setMostrarModal(false)}
-                className="absolute top-4 right-5 text-3xl leading-none"
+                aria-label="Cerrar datos bancarios"
+                className="
+                  absolute top-4 right-5
+                  text-3xl leading-none
+                  text-[#F4E8DD]
+                  hover:text-[#B88A8A]
+                  transition-colors
+                "
               >
                 ×
               </button>
 
-              <h3 className="font-playfair text-3xl">Santander</h3>
+              <h3 className="font-playfair text-3xl">
+                Santander
+              </h3>
 
-              <div className="w-12 h-8 rounded bg-[#E6C15B] mt-6"></div>
+              <div className="w-12 h-8 rounded bg-[#B88A8A] mt-6"></div>
 
               <p className="tracking-[.18em] text-lg mt-8">
                 1234 5678 9012 3456
               </p>
 
-              <p className="mt-6 text-sm text-[#F4E8DD]/70">Titular</p>
+              <p className="mt-6 text-sm text-[#F4E8DD]/70">
+                Titular
+              </p>
 
-              <p className="font-playfair">Juan Pérez</p>
+              <p className="font-playfair">
+                Juan Pérez
+              </p>
 
               <button
                 type="button"
@@ -146,6 +162,8 @@ const Regalos = () => {
                   py-3
                   rounded-full
                   font-semibold
+                  hover:bg-[#F8F2ED]
+                  transition-colors
                 "
               >
                 Copiar número
